@@ -37,7 +37,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import cn.finalteam.floatviewfinal.utils.ResourceUtils;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -77,7 +79,7 @@ public class FloatView extends FrameLayout implements OnTouchListener {
 
     final Handler mTimerHandler = new Handler() {
         public void handleMessage(Message msg) {
-            if ( msg.what == HANDLER_TYPE_HIDE_LOGO ) {
+            if (msg.what == HANDLER_TYPE_HIDE_LOGO) {
                 // 比如隐藏悬浮框
                 if (mCanHide) {
                     mCanHide = false;
@@ -91,7 +93,7 @@ public class FloatView extends FrameLayout implements OnTouchListener {
                     refreshFloatMenu(mIsRight);
                     mLlFloatMenu.setVisibility(View.GONE);
                 }
-            } else if ( msg.what == HANDLER_TYPE_CANCEL_ANIM ) {
+            } else if (msg.what == HANDLER_TYPE_CANCEL_ANIM) {
                 mIvFloatLoader.clearAnimation();
                 mIvFloatLoader.setVisibility(View.GONE);
                 mShowLoader = false;
@@ -159,7 +161,7 @@ public class FloatView extends FrameLayout implements OnTouchListener {
         int oldY = mWmParams.y;
         switch (newConfig.orientation) {
             case Configuration.ORIENTATION_LANDSCAPE://横屏
-                if ( mIsRight ) {
+                if (mIsRight) {
                     mWmParams.x = mScreenWidth;
                     mWmParams.y = oldY;
                 } else {
@@ -168,7 +170,7 @@ public class FloatView extends FrameLayout implements OnTouchListener {
                 }
                 break;
             case Configuration.ORIENTATION_PORTRAIT://竖屏
-                if ( mIsRight ) {
+                if (mIsRight) {
                     mWmParams.x = mScreenWidth;
                     mWmParams.y = oldY;
                 } else {
@@ -182,6 +184,7 @@ public class FloatView extends FrameLayout implements OnTouchListener {
 
     /**
      * 创建Float view
+     *
      * @param context
      * @return
      */
@@ -219,7 +222,7 @@ public class FloatView extends FrameLayout implements OnTouchListener {
         rootFloatView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( !mDraging ) {
+                if (!mDraging) {
                     if (mLlFloatMenu.getVisibility() == View.VISIBLE) {
                         mLlFloatMenu.setVisibility(View.GONE);
                     } else {
@@ -348,6 +351,7 @@ public class FloatView extends FrameLayout implements OnTouchListener {
 
     /**
      * 刷新float view menu
+     *
      * @param right
      */
     private void refreshFloatMenu(boolean right) {
@@ -405,7 +409,8 @@ public class FloatView extends FrameLayout implements OnTouchListener {
             try {
                 mTimerTask.cancel();
                 mTimerTask = null;
-            } catch (Exception e){}
+            } catch (Exception e) {
+            }
 
         }
         mTimerTask = new TimerTask() {
@@ -446,6 +451,7 @@ public class FloatView extends FrameLayout implements OnTouchListener {
         }
         try {
             mTimerHandler.removeMessages(1);
-        } catch (Exception e){}
+        } catch (Exception e) {
+        }
     }
 }
